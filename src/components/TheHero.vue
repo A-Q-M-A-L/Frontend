@@ -69,7 +69,7 @@
                                     </span>
                                     <div
                                         class="w-[50px] h-[50px] font-mono bg-green-500 rounded-full pt-[12px] text-center font-bold text-xl tracking-widest">
-                                        5
+                                        {{ this.projectManagers.length }}
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                     </span>
                                     <div
                                         class="w-[50px] h-[50px] font-mono bg-yellow-500 rounded-full pt-[12px] text-center font-bold text-xl tracking-widest">
-                                        34
+                                        {{ this.employees.length }}
                                     </div>
                                 </div>
 
@@ -94,7 +94,7 @@
                                     </span>
                                     <div
                                         class="w-[50px] h-[50px] font-mono bg-blue-500 rounded-full pt-[12px] text-center font-bold text-xl tracking-widest">
-                                        20
+                                        ok
                                     </div>
 
                                 </div>
@@ -105,25 +105,63 @@
 
                     <!-- Gallery of ProjectManager and Employess-->
                     <div class="flex flex-col space-y-6 p-6">
+                        <strong class="text-2xl tracking-wide">Profiles <span class="text-yellow-300">Ov</span>erview</strong>
                         <!-- Gallery Of project Manager -->
-                        <div class="flex">
+                        <div class="flex relative flex-1 flex-wrap  items-center mt-5 backdrop-blur-3xl rounded-lg  p-6 gap-7">
+                            <strong class="text-lg tracking-wide absolute top-3 left-5">Projet <span class="text-yellow-300">Ma</span>nagers</strong>
                             <!-- Card Container -->
-                            <div class="relative group overflow-hidden rounded-md">
-                                <img src="../assets/dummy.jpg" class="h-[160px] w-[135px] rounded-md group-hover:scale-110 duration-300"
-                                    alt="">
+                            <div v-for="manager in projectManagers" :key="manager.id"
+                                class="relative group overflow-hidden rounded-md cursor-pointer mt-8">
+                                <img src="../assets/dummy.jpg"
+                                    class="h-[160px] w-[135px] rounded-md group-hover:scale-110 duration-300" alt="">
+                                <p
+                                    class="uppercase text-black group-hover:text-white z-10 absolute left-2 bottom-2 font-bold text-xs tracking-wider duration-300">
+                                    Project Manager</p>
+
                                 <div
-                                    class="opacity-0 group-hover:opacity-100 absolute inset-0 h-full w-full bg-black/30 rounded-md duration-300">
-                                    <div class="relative flex flex-col  justify-start px-1 py-3 w-2">
-                                        <p class="text-sm">Name: {{ user.name }}</p>
-                                        <p class="text-sm">Email: {{ user.email }}</p>
+                                    class="opacity-0 group-hover:opacity-100 absolute inset-0 h-full w-full bg-black/40 rounded-md duration-300">
+
+                                    <div class="relative flex flex-col mt-6">
+                                        <p class="text-sm text-center font-bold ">Name: {{ manager.name }}</p>
+                                        <span class="text-center mt-3">
+                                        <button
+                                            class="px-3 py-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.3),rgba(255,255,255,0.1))] hover:bg-yellow-500 shadow-yellow-500 shadow-sm hover:shadow-xl duration-300 font-sans text-white font-medium rounded-lg cursor-pointer">Give Task</button>
+                                        </span>
                                     </div>
+
                                 </div>
                             </div>
+                            
                         </div>
 
 
                         <!-- Gallery Of Employess -->
-                        <div></div>
+                        <div class="flex relative flex-1 flex-wrap  items-center mt-5 backdrop-blur-3xl rounded-lg  p-6 gap-7">
+                            <strong class="text-lg tracking-wide absolute top-3 left-5">Em<span class="text-yellow-300">pl</span>oyees</strong>
+                            <!-- Card Container -->
+                            <div v-for="employee in employees" :key="employee.id"
+                                class="relative group overflow-hidden rounded-md cursor-pointer mt-8">
+                                <img src="../assets/dummy.jpg"
+                                    class="h-[160px] w-[135px] rounded-md group-hover:scale-110 duration-300" alt="">
+                                <p
+                                    class="uppercase text-black group-hover:text-white z-10 absolute left-2 bottom-2 font-bold text-xs tracking-wider duration-300">
+                                    Employee</p>
+
+                                <div
+                                    class="opacity-0 group-hover:opacity-100 absolute inset-0 h-full w-full bg-black/40 rounded-md duration-300">
+
+                                    <div class="relative flex flex-col mt-6">
+                                        <p class="text-sm text-center font-bold ">Name: {{ employee.name }}</p>
+                                        <span class="text-center mt-3">
+                                        <button
+                                            class="px-3 py-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.3),rgba(255,255,255,0.1))] hover:bg-yellow-500 shadow-yellow-500 shadow-sm hover:shadow-xl duration-300 font-sans text-white font-medium rounded-lg cursor-pointer">Give Task</button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
 
                     </div>
 
@@ -143,6 +181,9 @@ export default {
         return {
             active: 'portfolio',
             role: '',
+            employees: [],
+            projectManagers: [],
+            admins: [],
         };
     },
     computed: {
@@ -164,6 +205,34 @@ export default {
                     return 'Welcome to the task management system!';
             }
         },
+
+        getAllUsers() {
+            const allusers = this.$store.getters['user/getAllUsers']
+
+            // console.log(allusers)
+            console.log(this.employees)
+            console.log(this.projectManagers)
+            console.log(this.admins)
+
+            allusers.forEach(user => {
+                if (user.role === 'employee') {
+                    this.employees.push(user)
+                } else if (user.role === 'projectManager') {
+                    this.projectManagers.push(user)
+                } else if (user.role === 'admin') {
+                    this.admins.push(user)
+                }
+            })
+
+            console.log(this.employees)
+            console.log(this.projectManagers)
+            console.log(this.admins)
+
+        }
+    },
+    created() {
+        this.getAllUsers
+        this.$store.dispatch('user/getAllUsers')
     },
     methods: {
         logout() {
@@ -175,8 +244,8 @@ export default {
         },
         getNavClass(section) {
             return [
-                'px-3 py-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.3),rgba(255,255,255,0.1))] hover:bg-yellow-600 shadow-yellow-500 shadow-sm hover:shadow-xl duration-300 font-sans text-white font-medium rounded-lg cursor-pointer',
-                { 'bg-yellow-600': this.active === section },
+                'px-3 py-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.3),rgba(255,255,255,0.1))] hover:bg-yellow-600 shadow-yellow-500 shadow-sm hover:shadow-xl duration-300 font-medium text-white font-sans rounded-lg cursor-pointer',
+                { 'bg-yellow-500': this.active === section },
             ];
         },
         logout() {
@@ -186,5 +255,3 @@ export default {
     }
 }
 </script>
-
-
