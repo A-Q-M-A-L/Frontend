@@ -104,7 +104,7 @@ export default {
         const success = await this.$store.dispatch('user/login', { email: this.email, password: this.password });
         if (success) {
           // Redirect to the Dashboard route by name
-          this.$router.replace({ name: 'dashboard' });
+          this.$router.push('/dashboard');
         } else {
           console.log("Login failed");
         }

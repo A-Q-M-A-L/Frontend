@@ -65,9 +65,13 @@ const store = {
                 const data = await response.json();
 
                 // console.log(data);
+                console.log("After Data:", data.data.users);
+                
 
                 if (data.status === "success") {
                     context.commit("setAllUsers", { allUsers: data.data.users });
+                    console.log("After Data:", data.data.users);
+                    
                     return true; // Ensure true is returned
                 } else if (data.status === "fail") {
                     alert("Error: " + data.message);

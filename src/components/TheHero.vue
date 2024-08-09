@@ -11,20 +11,20 @@
                 <div>
                     <nav>
                         <ul class="flex justify-end items-center p-6 space-x-4">
-                            <router-link to="/portfolio">
+                           
                                 <li :class="getNavClass('portfolio')" @click="setActive('portfolio')">
                                     Dashboard
                                 </li>
-                            </router-link>
-                            <router-link to="/myskills">
+                            
+                           
                                 <li :class="getNavClass('skills')" @click="setActive('skills')">Settings</li>
-                            </router-link>
-                            <router-link>
+                           
+                            
                                 <li @click="logout"
                                     class="px-3 py-2 bg-[linear-gradient(to_right,rgba(255,255,255,0.3),rgba(255,255,255,0.1))] hover:bg-yellow-600 shadow-yellow-500 shadow-sm hover:shadow-xl duration-300 font-sans text-white font-medium rounded-lg cursor-pointer">
                                     Log Out
                                 </li>
-                            </router-link>
+                            
                         </ul>
                     </nav>
                 </div>
@@ -209,6 +209,8 @@ export default {
         getAllUsers() {
             const allusers = this.$store.getters['user/getAllUsers']
 
+
+
             // console.log(allusers)
             console.log(this.employees)
             console.log(this.projectManagers)
@@ -231,8 +233,8 @@ export default {
         }
     },
     created() {
-        this.getAllUsers
         this.$store.dispatch('user/getAllUsers')
+        this.getAllUsers
     },
     methods: {
         logout() {
