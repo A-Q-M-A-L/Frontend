@@ -4,5 +4,6 @@ export default {
   },
   logout(context){
     context.commit('user/setUser', null, { root: true })
+    localStorage.removeItem('isAuthenticated');
   }
 }

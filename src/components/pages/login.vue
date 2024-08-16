@@ -8,12 +8,13 @@
   </div>
 
   <!-- Main -->
-  <div class="h-[100vh] w-[100vw] bg-[#242424] flex justify-center items-center">
+  <div  class="h-[100vh] w-[100vw] bg-[#242424] flex justify-center items-center">
     <div class="max-w-xl md:max-w-6xl mx-auto h-[80vh] bg-[#121212] flex justify-center items-center rounded-md">
+
       <div
         class="relative w-full h-full flex justify-around items-center transition-transform duration-700 ease-in-out">
         <!-- Image Section -->
-        <div class="relative h-full w-[36vw] login-image rounded-tl-md rounded-bl-md">
+        <div class="hidden md:block relative h-full w-[36vw] login-image rounded-tl-md rounded-bl-md">
           <!-- Black gradient -->
           <div
             class="absolute inset-0 bg-gradient-to-r from-[#121212] to-[#1e1e1e] opacity-75 rounded-tl-md rounded-bl-md">
@@ -50,7 +51,7 @@
         </div>
 
         <!-- Form Container -->
-        <div class="p-5 w-[36vw] h-full flex flex-col justify-center items-center">
+        <div class="p-5 w-full md:w-[36vw] h-full flex flex-col justify-center items-center">
           <!-- Login Form -->
 
           <div class="w-full h-full flex flex-col justify-center">

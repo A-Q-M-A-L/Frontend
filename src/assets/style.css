@@ -3,3 +3,21 @@
 @tailwind utilities;
 
 
+/* In your global CSS file */
+::-webkit-scrollbar {
+    width: 0px;
+   
+}
+
+/* ::-webkit-scrollbar-track {
+    background: #973902b4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff5e00d7;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} */

@@ -19,7 +19,7 @@ const store = createStore({
   state() {
     return {
         token: '',
-        isAuthenticated: false
+        isAuthenticated: localStorage.getItem('isAuthenticated')
     }
   },
   mutations: rootMutations,

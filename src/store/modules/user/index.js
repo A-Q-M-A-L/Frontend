@@ -37,6 +37,7 @@ const store = {
                 if (data.status === "success") {
                     context.commit("setUser", { user: data.data.user });
                     context.commit('setToken', { token: data.token }, { root: true });
+                    localStorage.setItem('isAuthenticated', true)
                     return true; // Ensure true is returned
                 } else if (data.status === "fail") {
                     alert("Error: " + data.message);
@@ -64,14 +65,13 @@ const store = {
 
                 const data = await response.json();
 
-                // console.log(data);
-                console.log("After Data:", data.data.users);
-                
 
                 if (data.status === "success") {
+                    console.log(data.data.users);
                     context.commit("setAllUsers", { allUsers: data.data.users });
-                    console.log("After Data:", data.data.users);
                     
+                    
+                
                     return true; // Ensure true is returned
                 } else if (data.status === "fail") {
                     alert("Error: " + data.message);
@@ -100,6 +100,8 @@ const store = {
             }
         },
         getAllUsers(state) {
+            console.log("slkkkddkkkkk", state.allUsers);
+            
             return state.allUsers
         }
       

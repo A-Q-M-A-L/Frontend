@@ -4,6 +4,7 @@ import login from '../components/pages/login.vue'
 import dashboard from '../components/pages/dashboard.vue'
 import store from '../store/index.js'
 
+
 const routes = [
     {
         path: '/',
@@ -14,9 +15,9 @@ const routes = [
     {
         path: '/dashboard', 
         name: 'dashboard',
-        meta: {isAuthenticated: true},
+        meta: {isAuthenticated: false},
         component: dashboard
-    }
+    },
 
 ]
 
